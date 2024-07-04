@@ -87,3 +87,89 @@ Database Setup:
 6. Create a new database and a collection.
 7. Copy the connecting string from the cluster.
 8. Install mongodb compass and connect to the database using the connecting string.
+
+From the backend, connect to the database:
+
+1. Copy the connection string from the cluster.
+2. Install mongoose:
+
+```
+npm install mongoose
+```
+
+3. In the index.js file, add the following code:
+
+```
+const mongoose = require('mongoose');
+
+mongoose.connect(connection_string);
+```
+
+4. Install dotenv:
+
+```
+npm install dotenv
+```
+
+5. Create a .env file and add the connection string:
+
+```
+MONGODB_URI=connection_string
+```
+
+6. Require the dotenv package in the index.js file:
+
+```
+require('dotenv').config();
+```
+
+7. Change the connection string in index.js inside mongoose.connect() function to
+
+```
+process.env.MONGODB_URI
+```
+
+8. Add the .env file to the .gitignore file.
+9. Create a config.js file under the utils folder and add the following code:
+
+```
+require('dotenv').config();
+
+const MONGODB_URI = process.env.MONGODB_URI;
+
+module.exports = {
+    MONGODB_URI
+};
+```
+
+10. Require the config.js file in the index.js file:
+
+```
+const { MONGODB_URI } = require('./utils/config');
+```
+
+11. Update the variable process.env.MONGODB_URI to MONGODB_URI in the mongoose.connect() function.
+
+Connect to the server using Express.js:
+
+1. Install express:
+
+```
+npm install express
+```
+
+2. update the index.js file:
+
+```
+const express = require('express');
+
+const app = express();
+
+app.get('/', (req, res) => {
+    res.send('Hello World');
+});
+
+app.listen(3001, () => {
+    console.log('Server is running on port 3001');
+});
+```

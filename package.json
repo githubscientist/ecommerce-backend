@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/githubscientist/ecommerce-backend/issues"
   },
-  "homepage": "https://github.com/githubscientist/ecommerce-backend#readme"
+  "homepage": "https://github.com/githubscientist/ecommerce-backend#readme",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.4.4"
+  }
 }
