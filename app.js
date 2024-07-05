@@ -6,6 +6,7 @@ const unknownEndpoint = require('./utils/Error');
 // const morgan = require('morgan');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
+const productRouter = require('./routes/productRoutes');
 
 // create an express app
 const app = express();
@@ -25,6 +26,7 @@ app.use(express.json());
 app.use(requestLogger);
 
 app.use('/api/v1/users', userRouter);
+app.use('/api/v1/products', productRouter);
 
 app.use(unknownEndpoint);
 
