@@ -320,10 +320,10 @@ Routes:
 
 User Routes:
 
-1. POST /api/users/register
-2. POST /api/users/login
-3. POST /api/users/logout
-4. GET /api/users/profile
+1. POST /api/users/register (Done)
+2. POST /api/users/login (Done)
+3. POST /api/users/logout (Done)
+4. GET /api/users/profile (Done)
 5. PUT /api/users/profile
 6. DELETE /api/users/profile
 
