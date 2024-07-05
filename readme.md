@@ -173,3 +173,180 @@ app.listen(3001, () => {
     console.log('Server is running on port 3001');
 });
 ```
+
+# This is a simple e-commerce application that allows users to view products, add products to cart, and checkout. The admin can manage products, users, and orders.
+
+User Stories:
+
+1. As a user, I should be able to register and login to the application.
+2. As a user, I should be able to view all products.
+3. As a user, I should be able to view a single product.
+4. As a user, I should be able to add a product to the cart.
+5. As a user, I should be able to remove a product from the cart.
+6. As a user, I should be able to view the cart.
+7. As a user, I should be able to checkout.
+8. As an admin, I should be able to add a user.
+9. As an admin, I should be able to view all users.
+10. As an admin, I should be able to view a single user.
+11. As an admin, I should be able to update a user.
+12. As an admin, I should be able to delete a user.
+13. As an admin, I should be able to add a product.
+14. As an admin, I should be able to view all products.
+15. As an admin, I should be able to view a single product.
+16. As an admin, I should be able to update a product.
+17. As an admin, I should be able to delete a product.
+18. As an admin, I should be able to view all orders.
+19. As an admin, I should be able to view a single order.
+20. As an admin, I should be able to update an order.
+21. As an admin, I should be able to delete an order.
+
+Tasks:
+
+Backend:
+
+1. Setup the project with Node.js and Express.js. (Done)
+2. Setup the environment variables (Dotenv). (Done)
+3. Connect to the MongoDB database. (Done)
+4. Run the server and test the connection. (Done)
+5. Setup the architecture of the project (Models, Routes, Controllers, Middlewares). (Done)
+6. Basic housekeeping (Error handling, Logging, Parsing). (Done)
+7. Setup the authentication system (Register, Login, Logout). (Not Done)
+8. Setup the authorization system (Roles, Permissions). (Not Done)
+9. Setup the product system (CRUD). (Not Done)
+10. Setup the user system (CRUD). (Not Done)
+11. Setup the order system (CRUD). (Not Done)
+12. Setup the cart system (CRUD). (Not Done)
+13. Setup the checkout system (Payment, Shipping). (Not Done)
+14. Setup the email system (Nodemailer). (Not Done)
+15. Setup the image system (Multer). (Not Done)
+16. Setup the deployment system (Netlify, Render). (Not Done)
+
+Frontend:
+
+1. Setup the project with React. (Not Done)
+2. Setup the architecture of the project (Components, Pages, Routes, Redux). (Not Done)
+3. Setup the authentication system (Register, Login, Logout). (Not Done)
+   a. Create the Register component.
+   b. Create the Login component.
+   c. Create the Logout component.
+   d. Create the Auth component.
+4. Setup the authorization system (Roles, Permissions). (Not Done)
+5. Setup the product system (CRUD). (Not Done)
+6. Setup the user system (CRUD). (Not Done)
+7. Setup the order system (CRUD). (Not Done)
+8. Setup the cart system (CRUD). (Not Done)
+9. Setup the checkout system (Payment, Shipping). (Not Done)
+10. Setup the email system (Nodemailer). (Not Done)
+11. Setup the image system (Multer). (Not Done)
+12. Setup the deployment system (Netlify, Render). (Not Done)
+
+Models:
+
+1. User Model:
+
+```
+{
+    name: String,
+    email: String,
+    password: String,
+    role: String,
+    cart: [
+        {
+            product: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Product'
+            },
+            quantity: Number
+        }
+    ]
+}
+```
+
+2. Product Model:
+
+```
+{
+    name: String,
+    description: String,
+    price: Number,
+    image: String
+    stock: Number
+}
+```
+
+3. Order Model:
+
+```
+{
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    products: [
+        {
+            product: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Product'
+            },
+            quantity: Number
+        }
+    ],
+    total: Number,
+    status: String
+}
+```
+
+4. Cart Model:
+
+```
+{
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    products: [
+        {
+            product: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Product'
+            },
+            quantity: Number
+        }
+    ]
+}
+```
+
+Routes:
+
+User Routes:
+
+1. POST /api/users/register
+2. POST /api/users/login
+3. POST /api/users/logout
+4. GET /api/users/profile
+5. PUT /api/users/profile
+6. DELETE /api/users/profile
+
+Product Routes:
+
+1. POST /api/products
+2. GET /api/products
+3. GET /api/products/:id
+4. PUT /api/products/:id
+5. DELETE /api/products/:id
+
+Order Routes:
+
+1. POST /api/orders
+2. GET /api/orders
+3. GET /api/orders/:id
+4. PUT /api/orders/:id
+5. DELETE /api/orders/:id
+
+Cart Routes:
+
+1. POST /api/carts
+2. GET /api/carts
+3. GET /api/carts/:id
+4. PUT /api/carts/:id
+5. DELETE /api/carts/:id
