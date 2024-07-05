@@ -24,7 +24,7 @@ app.use(express.json());
 
 app.use(requestLogger);
 
-app.use('/api/v1', userRouter);
+app.use('/api/v1/users', userRouter);
 
 app.use(unknownEndpoint);
 
