@@ -8,10 +8,16 @@ const auth = require('../middleware/auth');
 // userRouter.get('/', userController.getData);
 userRouter.post('/register', userController.register);
 userRouter.post('/login', userController.login);
-userRouter.get('/logout', userController.logout);
+userRouter.get('/logout', auth.verifyToken, userController.logout);
 userRouter.get('/profile', auth.verifyToken, userController.getProfile);
 userRouter.put('/profile', auth.verifyToken, userController.updateProfile);
 userRouter.delete('/profile', auth.verifyToken, userController.deleteProfile);
+
+// admin routes
+userRouter.get('/admin/users', auth.verifyToken, auth.isAdmin, userController.getUsers);
+userRouter.get('/admin/users/:id', auth.verifyToken, auth.isAdmin, userController.getUser);
+userRouter.put('/admin/users/:id', auth.verifyToken, auth.isAdmin, userController.updateUser);
+userRouter.delete('/admin/users/:id', auth.verifyToken, auth.isAdmin, userController.deleteUser);
 
 // 3. export the router
 module.exports = userRouter;

@@ -167,6 +167,90 @@ const userController = {
         } catch (error) {
             res.send({ message: error.message })
         }
+    },
+    getUsers: async (req, res) => {
+        try {
+            // find all users
+            const users = await User.find();
+
+            // return the users
+            res.send({ message: 'All users', users });
+
+        } catch (error) {
+            res.send({ message: error.message })
+        }
+    },
+    getUser: async (req, res) => {
+        try {
+            // get the user id from the request parameters
+            const userId = req.params.id;
+
+            // find the user by id
+            const user = await User.findById(userId);
+
+            // if the user does not exist, return an error
+            if (!user) {
+                return res.send({ message: 'User does not exist' });
+            }
+
+            // return the user
+            res.send({ message: 'User', user });
+
+        } catch (error) {
+            res.send({ message: error.message })
+        }
+    },
+
+    updateUser: async (req, res) => {
+        try {
+            // get the user id from the request parameters
+            const userId = req.params.id;
+
+            // get the user inputs from the request body
+            const { name, email } = req.body;
+
+            // find the user by id
+            const user = await User.findById(userId);
+
+            // if the user does not exist, return an error
+            if (!user) {
+                return res.send({ message: 'User does not exist' });
+            }
+
+            // update the user profile
+            user.name = name || user.name;
+            user.email = email || user.email;
+
+            // save the user to the database
+            const updatedUser = await user.save();
+
+            // return the updated user profile
+            res.send({ message: 'User updated successfully', user: updatedUser });
+
+        } catch (error) {
+            res.send({ message: error.message })
+        }
+    },
+
+    deleteUser: async (req, res) => {
+        try {
+            // get the user id from the request parameters
+            const userId = req.params.id;
+
+            // find the user by id and delete
+            const deletedUser = await User.findByIdAndDelete(userId);
+
+            // if the user does not exist, return an error
+            if (!deletedUser) {
+                return res.send({ message: 'User does not exist' });
+            }
+
+            // return the deleted user
+            res.send({ message: 'User deleted successfully', user: deletedUser });
+
+        } catch (error) {
+            res.send({ message: error.message })
+        }
     }
     
 }
