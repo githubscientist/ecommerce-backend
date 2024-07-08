@@ -4,9 +4,9 @@ const orderController = require('../controllers/orderController');
 const auth = require('../middleware/auth');
 
 orderRouter.post('/', auth.verifyToken, orderController.createOrder);
-orderRouter.get('/', auth.verifyToken, orderController.getAllOrders);
-orderRouter.get('/:id', auth.verifyToken, orderController.getOrderById);
-orderRouter.put('/:id', auth.verifyToken, orderController.updateOrder);
-orderRouter.delete('/:id', auth.verifyToken, orderController.deleteOrder);
+orderRouter.get('/', auth.verifyToken, auth.isAdmin, orderController.getAllOrders);
+orderRouter.get('/:id', auth.verifyToken, auth.isAdmin, orderController.getOrderById);
+orderRouter.put('/:id', auth.verifyToken, auth.isAdmin, orderController.updateOrder);
+orderRouter.delete('/:id', auth.verifyToken, auth.isAdmin, orderController.deleteOrder);
 
 module.exports = orderRouter;
