@@ -210,16 +210,15 @@ Backend:
 4. Run the server and test the connection. (Done)
 5. Setup the architecture of the project (Models, Routes, Controllers, Middlewares). (Done)
 6. Basic housekeeping (Error handling, Logging, Parsing). (Done)
-7. Setup the authentication system (Register, Login, Logout). (Not Done)
+7. Setup the authentication system (Register, Login, Logout). (Done)
 8. Setup the authorization system (Roles, Permissions). (Not Done)
-9. Setup the product system (CRUD). (Not Done)
-10. Setup the user system (CRUD). (Not Done)
-11. Setup the order system (CRUD). (Not Done)
+9. Setup the product system (CRUD). (Done)
+10. Setup the user system (CRUD). (Done)
+11. Setup the order system (CRUD). (Done)
 12. Setup the cart system (CRUD). (Not Done)
-13. Setup the checkout system (Payment, Shipping). (Not Done)
-14. Setup the email system (Nodemailer). (Not Done)
-15. Setup the image system (Multer). (Not Done)
-16. Setup the deployment system (Netlify, Render). (Not Done)
+13. Setup the email system (Nodemailer). (Not Done)
+14. Setup the image system (Multer). (Not Done)
+15. Setup the deployment system (Netlify, Render). (Not Done)
 
 Frontend:
 
