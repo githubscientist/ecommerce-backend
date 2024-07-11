@@ -4,6 +4,8 @@ const userRouter = express.Router();
 const userController = require('../controllers/userController');
 const auth = require('../middleware/auth');
 
+userRouter.get('/checkAuth', userController.checkAuth);
+
 // 2. add routes
 // userRouter.get('/', userController.getData);
 userRouter.post('/register', userController.register);

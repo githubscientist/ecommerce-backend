@@ -17,7 +17,7 @@ const userController = {
 
             // if the user already exists, return an error
             if (user) {
-                return res.send({ message: 'User already exists' });
+                return res.status(400).send({ message: 'User already exists' });
             }
 
             // hash the password
@@ -30,7 +30,7 @@ const userController = {
             const savedUser = await newUser.save();
 
             // return the saved user
-            res.send({ message: 'User created successfully', user: savedUser });
+            res.status(201).send({ message: 'Registration successful' });
         } catch (error) {
             res.send({ message: error.message })
         }
@@ -45,7 +45,7 @@ const userController = {
 
             // if the user does not exist, return an error
             if (!user) {
-                return res.send({ message: 'User does not exist' });
+                return res.status(400).send({ message: 'User does not exist' });
             }
 
             // check if the password is correct
@@ -53,7 +53,7 @@ const userController = {
 
             // if the password is incorrect, return an error
             if (!isPasswordCorrect) {
-                return res.send({ message: 'Invalid credentials' });
+                return res.status(400).send({ message: 'Invalid password' });
             }
 
             // create a token
@@ -68,7 +68,7 @@ const userController = {
             });
 
             // return the user
-            res.send({ message: 'Login successful' });
+            res.status(200).send({ message: 'Login successful', user: user });
 
         } catch (error) {
             res.send({ message: error.message })
@@ -80,14 +80,14 @@ const userController = {
             const userId = req.userId;
 
             if (!userId) {
-                return res.send({ message: 'User not logged in' });
+                return res.status(400).send({ message: 'User not authenticated' });
             }
 
             // clear the cookie
             res.clearCookie('token');
 
             // return the user
-            res.send({ message: 'Logout successful' });
+            res.status(200).send({ message: 'Logout successful' });
 
         } catch (error) {
             res.send({ message: error.message })
@@ -100,17 +100,16 @@ const userController = {
             // get the user id from the request object
             const userId = req.userId;
 
-
             // find the user by id
             const userProfile = await User.findById(userId);
 
             // if the user does not exist, return an error
             if (!userProfile) {
-                return res.send({ message: 'User does not exist' });
+                return res.status(400).send({ message: 'User does not exist' });
             }
 
             // return the user profile
-            res.send({ message: 'User profile', user: userProfile });
+            res.status(200).send({ message: 'User profile', user: userProfile });
 
         } catch (error) {
             res.send({ message: error.message })
@@ -251,8 +250,28 @@ const userController = {
         } catch (error) {
             res.send({ message: error.message })
         }
-    }
-    
+    },
+    checkAuth: async (req, res) => {
+        try {
+            // get the token from the request cookies
+            const token = req.cookies.token;
+
+            // if the token does not exist, return an error
+            if (!token) {
+                return res.status(401).send({ message: 'Access denied' });
+            }
+
+            // verify the token
+            try {
+                const decoded = jwt.verify(token, JWT_SECRET);
+                return res.status(200).send({ message: 'Valid token' });
+            } catch (error) {
+                return res.status(401).send({ message: 'Invalid token' });
+            }
+        } catch (error) {
+            res.status(500).send({ message: error.message });
+        }
+    },
 }
 
 module.exports = userController;

@@ -222,22 +222,21 @@ Backend:
 
 Frontend:
 
-1. Setup the project with React. (Not Done)
-2. Setup the architecture of the project (Components, Pages, Routes, Redux). (Not Done)
-3. Setup the authentication system (Register, Login, Logout). (Not Done)
+1. Setup the project with React. (Done)
+2. Setup the architecture of the project (Components, Pages, Routes). (Done)
+3. Setup the authentication system (Register, Login, Logout). (Done)
    a. Create the Register component.
    b. Create the Login component.
    c. Create the Logout component.
    d. Create the Auth component.
-4. Setup the authorization system (Roles, Permissions). (Not Done)
-5. Setup the product system (CRUD). (Not Done)
+4. Setup the authorization system (Roles, Permissions). (Done)
+5. Setup the product system (CRUD). (In Progress)
 6. Setup the user system (CRUD). (Not Done)
-7. Setup the order system (CRUD). (Not Done)
+7. Setup the order system (CRUD). (In Progress)
 8. Setup the cart system (CRUD). (Not Done)
-9. Setup the checkout system (Payment, Shipping). (Not Done)
-10. Setup the email system (Nodemailer). (Not Done)
-11. Setup the image system (Multer). (Not Done)
-12. Setup the deployment system (Netlify, Render). (Not Done)
+9. Setup the email system (Nodemailer). (Not Done)
+10. Setup the image system (Multer). (Not Done)
+11. Setup the deployment system (Netlify, Render). (Not Done)
 
 Models:
 

@@ -10,7 +10,7 @@ const auth = {
 
             // if the token does not exist, return an error
             if (!token) {
-                return res.send({ message: 'Token not found' });
+                return res.status(401).send({ message: 'Access denied' });
             }
 
             // verify the token
@@ -19,10 +19,10 @@ const auth = {
                 req.userId = decoded.id;
                 next();
             } catch (error) {
-                return res.send({ message: 'Invalid token' });
+                return res.status(401).send({ message: 'Invalid token' });
             }
         } catch (error) {
-            res.send({ message: error.message })
+            res.status(500).send({ message: error.message });
         }
     },
     isAdmin: async (req, res, next) => {
