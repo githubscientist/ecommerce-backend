@@ -5,7 +5,10 @@ const productSchema = new mongoose.Schema({
     name: String,
     description: String,
     price: Number,
-    image: String,
+    image: {
+        type: String,
+        default: 'placeholder.jpg'
+    },
     category: String,
     stock: Number,
     createdAt: {

@@ -7,12 +7,16 @@ const productController = {
             // get the data from the request body
             const { name, description, price, image, category, stock } = req.body;
 
+            if (!req.file) {
+                return res.status(400).send({ message: 'Please upload an image' });
+            }
+
             // create a new product
             const newProduct = new Product({
                 name,
                 description,
                 price,
-                image,
+                image: req.file ? req.file.path : 'placeholder.jpg',
                 category,
                 stock
             });
@@ -21,9 +25,9 @@ const productController = {
             const savedProduct = await newProduct.save();
 
             // return the saved product
-            res.send({ message: 'Product created successfully', product: savedProduct });
+            res.status(201).send({ message: 'Product created successfully', product: savedProduct });
         } catch (error) {
-            res.send({ message: error.message });
+            res.status(400).send({ message: error.message });
         }
     },
     // 2. GET /api/products
